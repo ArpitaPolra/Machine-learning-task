@@ -6,18 +6,18 @@ cursor=con.cursor()
 # con.close()
 
 # insert data
-# while True:
-#     cid=int(input("Enter Customer Id:"))
-#     cname=input("Enter Customer Name:")
-#     quantity=int(input("Enter Quntity:"))
-#     price=int(input("Enter Price:"))
-#     query="insert into tblcust values({},'{}',{},{})" .format(cid,cname,quantity,price)
-#     cursor.execute(query)
-#     con.commit()
-#     print("Data Inserted Successfully..")
-#     x=int(input("1->Enter more\n2->Exit\nEnter choice:"))
-#     if x==2:
-#         break 
+while True:
+    cid=int(input("Enter Customer Id:"))
+    cname=input("Enter Customer Name:")
+    quantity=int(input("Enter Quntity:"))
+    price=int(input("Enter Price:"))
+    query="insert into tblcust values({},'{}',{},{})" .format(cid,cname,quantity,price)
+    cursor.execute(query)
+    con.commit()
+    print("Data Inserted Successfully..")
+    x=int(input("1->Enter more\n2->Exit\nEnter choice:"))
+    if x==2:
+        break 
 
 # update data
 cid=int(input("Enter Customer Id:"))
