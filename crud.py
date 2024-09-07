@@ -7,14 +7,33 @@ cursor=con.cursor()
 
 # insert data
 def insert_data():
-    cid=int(input("Enter Customer Id:"))
-    cname=input("Enter Customer Name:")
-    quantity=int(input("Enter Quntity:"))
-    price=int(input("Enter Price:"))
-    query="insert into tblcust values({},'{}',{},{})" .format(cid,cname,quantity,price)
-    cursor.execute(query)
-    con.commit()
-    print("Data Inserted Successfully..")
+    
+    while True:
+        cid=int(input("Enter Customer Id:"))
+        
+
+        cursor.execute("SELECT COUNT(*) FROM tblcust WHERE cid = %s", (cid,))
+        row_count = cursor.fetchone()[0]
+
+        if row_count > 0:
+            print("Record already exists.")
+        else:
+            # cid=int(input("Enter Customer Id:")
+            cname=input("Enter Customer Name:")
+            quantity=int(input("Enter Quantity:"))
+            price=int(input("Enter Price:"))
+            query="insert into tblcust values({},'{}',{},{})" .format(cid,cname,quantity,price)
+            cursor.execute(query)
+            con.commit()
+            print("Data Inserted Successfully..")
+
+        x = int(input("1->more data\n2->exit\n Enter your choice:"))
+        if x == 2:
+            print("Perform next operation")
+            break
+        else:
+            print("Enter data:")
+
     
 
 
@@ -22,7 +41,7 @@ def insert_data():
 def update_data():
     cid=int(input("Enter Customer Id:"))
     quantity=int(input("Enter Quntity:"))
-    query="update tblcust set quantity={} where cid={}".format(cid,quantity)
+    query="update tblcust set quantity={} where cid={}".format(quantity,cid)
     cursor.execute(query)
     con.commit()
     if cursor.rowcount>0:
